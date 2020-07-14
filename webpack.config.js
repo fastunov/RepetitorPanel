@@ -1,6 +1,7 @@
 const path = require ('path')
 const HTMLWebpackPlugin = require ('html-webpack-plugin')
 const {CleanWebpackPlugin} = require ('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: path.resolve (__dirname, 'src'),
@@ -11,8 +12,11 @@ module.exports = {
       path: path.resolve (__dirname, 'prod')
   },
   plugins: [
-      new HTMLWebpackPlugin (),
-      new CleanWebpackPlugin ()
+      new HTMLWebpackPlugin ({
+        template: 'index.html'
+      }),
+      new CleanWebpackPlugin (),
+      new CopyPlugin()
   ],
   module:{
       rules: [
